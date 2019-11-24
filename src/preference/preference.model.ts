@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose'
 
 export const PreferenceSchema = new mongoose.Schema({
     id_user: {type: String, required: true},
-    num_ligne: {type: Number, required: true},
+    num_ligne: {type: String, required: true},
     arret: {type: String, required: true},
 });
 

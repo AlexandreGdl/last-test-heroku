@@ -21,6 +21,7 @@ export class UserController {
             @Body('password') password: string,
     ){
         const response = await this.userService.createUser(userEmail,nom,prenom,password);
+        console.log(response)
         return response;
     }
 

@@ -5,7 +5,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { PreferenceSchema } from "./preference.model";
 
 @Module({
-    imports: [MongooseModule.forFeature([{name: 'User',schema: PreferenceSchema}])],
+    imports: [MongooseModule.forFeature([{name: 'Preference',schema: PreferenceSchema}])],
     controllers: [PreferenceController],
     providers: [PreferenceService]
 })

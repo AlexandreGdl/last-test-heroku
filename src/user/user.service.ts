@@ -17,21 +17,20 @@ export class UserService {
 
   async createUser(mail: string,nom: string,prenom: string,password: string): Promise<any>{
     let newUser: User;
-    let result: any;
+    let result;
     await this.userModel.find({mail: mail}).then(
       data => {
         if (data.length !== 0) throw new NotAcceptableException('User already exist');
       }
     )
 
-    await bcrypt.hash(password, 10, (err, hash) => {
+    return result = await bcrypt.hash(password, 10, async (err, hash) => {
       console.log(hash)
       if (err) {
           console.log(`[ER] ☠ Hash error --`)
           console.log(err)
           throw new InternalServerErrorException('Error while hashing password')
       } else {
-          console.log('registered')
            newUser = new this.userModel({
             nom,
             prenom,
@@ -40,15 +39,16 @@ export class UserService {
           });
   
           // some console.log in order to debug
-          console.log(`-----Debug on-----`)
-          console.log(newUser)
-  
+          console.log(`-----Debug on-----`);
+          console.log(newUser);
           // persist the data into the DB and telling it's allright if it's allright
-          result =  newUser.save();
+          let container =  await newUser.save();
+          return container
+
       }
     })
 
-    return { statusCode: 201,msg: 'Account Created' };
+    
     
   }
 
